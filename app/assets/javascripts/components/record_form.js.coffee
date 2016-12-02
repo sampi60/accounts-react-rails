@@ -3,9 +3,17 @@
     title: ''
     date: ''
     amount: ''
+  handleSubmit: (e) ->
+    e.preventDefault()
+    $.post '/records', { record: @state }, (data) =>
+      @props.handleNewRecord data
+      @setState @getInitialState()
+    , 'JSON'
+
   render: ->
     React.DOM.form
       className: 'form-inline'
+      onSubmit: @handleSubmit
       React.DOM.div
         className: 'form-group'
         React.DOM.input
