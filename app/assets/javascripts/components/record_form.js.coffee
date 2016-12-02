@@ -36,8 +36,12 @@
       React.DOM.button
         type: 'submit'
         className: 'btn btn-primary'
+        disabled: !@valid()
         'Create Record'
 
   handleChange: (e) ->
     name = e.target.name
     @setState "#{name}": e.target.value
+
+  valid: ->
+    @state.title && @state.date && @state.amount
